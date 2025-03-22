@@ -1,0 +1,37 @@
+<div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header text-center bg-danger text-white">
+        <h5>Secure Input Box</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <label for="secure-input" class="form-label">Enter Safe Input:</label>
+            <input
+              id="secure-input"
+              type="text"
+              class="form-control"
+              placeholder="Your safe input..."
+              (input)="onInputChange($event)"
+              [ngClass]="{'is-invalid': !isValid && userInput.length > 0}"
+            />
+            <div *ngIf="!isValid && userInput.length > 0" class="invalid-feedback">
+              Unsafe characters detected!
+            </div>
+          </div>
+          <button
+            type="button"
+            class="btn btn-success w-100"
+            [disabled]="!isValid"
+            (click)="onSubmit()"
+          >
+            Submit
+          </button>
+          <div *ngIf="submissionMessage" class="alert alert-success mt-3">
+            {{ submissionMessage }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
